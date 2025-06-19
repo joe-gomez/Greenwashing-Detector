@@ -1,11 +1,7 @@
 import re
 import html
 
-def highlight_individualising_language(text):
-    phrases = [
-        "you should", "your responsibility", "individual choice", "personal duty",
-        "you must", "on you", "each person", "it's up to you", "do your part"
-    ]
+def highlight_individualising_language(text, phrases):
     # Escape HTML to prevent injection
     text = html.escape(text)
 
