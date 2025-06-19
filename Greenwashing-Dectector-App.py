@@ -1,6 +1,6 @@
 import streamlit as st
 from transcribe import transcribe
-from highlight import highlight_individualising_language  # this should now be regex-based only
+highlighted_transcript = highlight_individualising_language(transcription)
 
 st.set_page_config(page_title="Audio/Video Transcriber", layout="centered")
 
