@@ -15,9 +15,11 @@ if uploaded_file is not None and st.button("Transcribe"):
     st.audio(uploaded_file, format="audio/mp3")
     with st.spinner("Transcribing... this may take a few seconds depending on the file size"):
         transcription = transcribe(uploaded_file, selected_language)
+    
     st.success("Transcription complete!")
     st.markdown("### 📝 Transcription:")
-        individualising_phrases = [
+
+    individualising_phrases = [
         "you should", "your responsibility", "individual choice", "personal duty",
         "you must", "on you", "each person", "it's up to you", "do your part"
     ]
@@ -42,7 +44,6 @@ if uploaded_file is not None and st.button("Transcribe"):
     %s
     </div>
     """ % highlighted_transcript, unsafe_allow_html=True)
-
 
     st.download_button(
         label="Download as .txt",
