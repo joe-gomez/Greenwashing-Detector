@@ -1,14 +1,6 @@
 import streamlit as st
 from transcribe import transcribe
-from highlight import highlight_individualising_language
-
-import spacy
-import subprocess
-import sys
-
-import spacy
-nlp = spacy.load("en_core_web_sm")
-
+from highlight import highlight_individualising_language  # this should now be regex-based only
 
 st.set_page_config(page_title="Audio/Video Transcriber", layout="centered")
 
