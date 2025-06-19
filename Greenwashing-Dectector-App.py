@@ -1,6 +1,6 @@
 import streamlit as st
 from transcribe import transcribe
-from highlight import highlight_individualising_language  # don't forget this line
+from highlight import highlight_individualising_language  # Make sure this is imported
 
 st.set_page_config(page_title="Audio/Video Transcriber", layout="centered")
 
@@ -15,12 +15,17 @@ if uploaded_file is not None and st.button("Transcribe"):
     st.audio(uploaded_file, format="audio/mp3")
     with st.spinner("Transcribing... this may take a few seconds depending on the file size"):
         transcription = transcribe(uploaded_file, selected_language)
-    
+
     st.success("Transcription complete!")
     st.markdown("### 📝 Transcription:")
 
-    # You can now safely use 'transcription'
-    highlighted_transcript = highlight_individualising_language(transcription)
+    individualising_phrases = [
+        "you should", "your responsibility", "individual choice", "personal duty",
+        "you must", "on you", "each person", "it's up to you", "do your part"
+    ]
+
+    # ✅ Now that transcription exists, we can use it:
+    highlighted_transcript = highlight_individualising_language(transcription, individualising_phrases)
 
     st.markdown("""
     <style>
