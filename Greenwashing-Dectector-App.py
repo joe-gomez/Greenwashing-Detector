@@ -6,13 +6,8 @@ import spacy
 import subprocess
 import sys
 
-try:
-    spacy.load("en_core_web_sm")
-except OSError:
-    st.write("Downloading spaCy model en_core_web_sm...")
-    result = subprocess.run([sys.executable, "-m", "spacy", "download", "en_core_web_sm"])
-    if result.returncode != 0:
-        st.error("Failed to download spaCy model!")
+import spacy
+nlp = spacy.load("en_core_web_sm")
 
 
 st.set_page_config(page_title="Audio/Video Transcriber", layout="centered")
