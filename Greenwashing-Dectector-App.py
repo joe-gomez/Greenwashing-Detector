@@ -1,5 +1,6 @@
 import streamlit as st
 from transcribe import transcribe
+from highlight import highlight_individualising_language
 
 st.set_page_config(page_title="Audio/Video Transcriber", layout="centered")
 
@@ -16,6 +17,12 @@ if uploaded_file is not None and st.button("Transcribe"):
         transcription = transcribe(uploaded_file, selected_language)
     st.success("Transcription complete!")
     st.markdown("### 📝 Transcription:")
+        individualising_phrases = [
+        "you should", "your responsibility", "individual choice", "personal duty",
+        "you must", "on you", "each person", "it's up to you", "do your part"
+    ]
+    highlighted_transcript = highlight_individualising_language(transcription, individualising_phrases)
+
     st.markdown("""
     <style>
     .transcript-box {
@@ -26,11 +33,16 @@ if uploaded_file is not None and st.button("Transcribe"):
         white-space: pre-wrap;
         font-family: monospace;
     }
+    .highlight {
+        background-color: #fffa65;
+        font-weight: bold;
+    }
     </style>
     <div class="transcript-box">
     %s
     </div>
-    """ % transcription, unsafe_allow_html=True)
+    """ % highlighted_transcript, unsafe_allow_html=True)
+
 
     st.download_button(
         label="Download as .txt",
