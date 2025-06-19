@@ -1,3 +1,16 @@
+import os
+import sys
+
+# Install packages if not already installed (runs once per session)
+try:
+    import whisper
+except ImportError:
+    os.system(f"{sys.executable} -m pip install --quiet openai-whisper")
+
+# Install ffmpeg (Linux, for Windows/macOS you need to install separately)
+if not os.path.exists("/usr/bin/ffmpeg") and not os.path.exists("/usr/local/bin/ffmpeg"):
+    os.system("apt-get update -qq && apt-get install -y -qq ffmpeg")
+
 import streamlit as st
 import whisper
 import tempfile
